@@ -103,11 +103,13 @@ flush() {
 
 deploy() {
   git config --global user.name "GitHub Actions"
-  git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+  git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
   git update-ref -d HEAD
   git add -A
   git commit -m "[Automation] Site update No.${GITHUB_RUN_NUMBER}"
+
+  git remote set-url origin "https://x-access-token:${PAT_TOKEN}@github.com/guihcodes-com/blog.git"
 
   if $_no_pages_branch; then
     git push -u origin "$PAGES_BRANCH"

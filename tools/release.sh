@@ -9,17 +9,12 @@
 set -eu
 
 PAGES_BRANCH="gh-pages"
-
 SITE_DIR="_site"
 
 _opt_dry_run=false
-
 _config="_config.yml"
-
 _no_pages_branch=false
-
 _backup_dir="$(mktemp -d)"
-
 _baseurl=""
 
 help() {
@@ -108,7 +103,6 @@ deploy() {
   git update-ref -d HEAD
   git add -A
   git commit -m "[Automation] Site update No.${GITHUB_RUN_NUMBER}"
-
   git remote set-url origin "https://x-access-token:${PAT_TOKEN}@github.com/guihcodes-com/blog.git"
 
   if $_no_pages_branch; then
